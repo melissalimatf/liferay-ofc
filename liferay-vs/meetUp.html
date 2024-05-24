@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Home Liferay </title>
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicons/favicon-16x16.png" />
+    <link rel="manifest" href="assets/images/favicons/site.webmanifest" />
+    <meta name="description" content=" Home Liferay " />
+
+    <!-- fonts -->
+    <link rel="stylesheet" href="assets/vendors/fontawesome/css/all.min.css" />
+    <link rel="stylesheet" href="assets/css/bondor.css" />
+    <link rel="stylesheet" href="assets/css/bondor-responsive.css" />
+</head>
+
+<style>
+  /* Adicionando animação de desvanecimento para a seção de comentários */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .comments-section {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  /* Adicionando animação de deslizamento para a caixa de comentários */
+  @keyframes slideIn {
+    from {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .comment-interface {
+    animation: slideIn 0.5s ease-out;
+  }
+
+
+.containers {
+  width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.header {
+    display: flex;
+    align-items: flex-start; /* Alinha itens no topo */
+    margin-bottom: 20px;
+}
+
+.header img {
+    max-width: 40%; /* Ajusta a largura da imagem */
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px; /* Adiciona espaÃ§o entre a imagem e o texto */
+}
+
+.info {
+    flex-grow: 1; /* Permite que a descriÃ§Ã£o ocupe o espaÃ§o restante */
+}
+
+.link-buttons {
+    display: flex;
+    align-items: center; /* Alinha os itens verticalmente */
+}
+
+.link-buttons .buttons {
+    margin-left: auto; /* Empurra os botÃµes para a direita */
+}
+
+.description {
+    margin-bottom: 20px;
+}
+
+
+
+.buttons button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}
+
+
+
+
+  
+  .grid {
+    display: grid;
+
+    grid-template-columns: 1fr;
+    background-color: #093e99; /* Cor de fundo azul */
+    border-radius: 8px; /* Borda arredondada */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .cell {
+    padding: 25px;
+    
+  }
+  .cell.header {
+    color: #fff; /* Fonte branca */
+    font-size: 20px;
+    margin-bottom: -3px;
+    
+  }
+  
+  .comment-interface {
+    margin: 20px auto; /* Centraliza horizontalmente sem utilizar padding */
+    width: 90%;
+    border: none;
+    border-radius: 8px;
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+  }
+  
+  .comment-interface textarea {
+    width: 99.5%;
+  
+    margin-bottom: 10px;
+    margin-left: 5px;
+    margin-right: 7px;
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    resize: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    font-size: 15px; /* Ajuste o tamanho da fonte conforme necessÃ¡rio */
+  }
+  
+  .comment-interface .star {
+    color: #ddd; /* Define a cor padrÃ£o das estrelas */
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease; /* Adiciona uma transiÃ§Ã£o suave para a mudanÃ§a de cor e transformaÃ§Ã£o */
+  }
+  
+  .comment-interface .star:hover {
+    color: gold; /* Define a cor dourada ao passar o mouse sobre a estrela */
+    transform: scale(1.2); /* Aumenta a escala da estrela em 20% quando o mouse passa sobre ela */
+  }
+  
+  .comment-interface .star.active {
+    color: gold; /* MantÃ©m a cor dourada para as estrelas selecionadas */
+  }
+  
+  .comment-interface .star.active ~ .star {
+    color: #ddd; /* Define a cor padrÃ£o para as estrelas Ã  direita da estrela clicada */
+  }
+  
+  
+  .comment-interface button {
+    background-color: #093e99;
+    color: #fff;
+    padding: 10px 20px; /* Aumenta o padding */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Adiciona transformaÃ§Ã£o Ã  transiÃ§Ã£o */
+    margin: 10px auto; /* Centraliza o botÃ£o horizontalmente e adiciona margem inferior */
+    display: block;
+    font-size: 16px;
+    width: 20%;
+  }
+  
+  .comment-interface button:hover {
+    background-color: #000;
+    transform: scale(1.05); /* Escala o botÃ£o em 105% do seu tamanho original ao passar o mouse */
+  }
+  
+  .comment-interface button:active {
+    background-color: #000;
+    transform: scale(0.95); /* Escala o botÃ£o em 95% do seu tamanho original quando clicado */
+  }
+  
+  .comment-rating {
+    display: flex;
+    align-items: center;
+  }
+  
+  .rating {
+    margin-bottom: 4px; /* Adiciona espaÃ§o abaixo das estrelas */
+    font-size: 30px; /* Aumentando o tamanho das estrelas */
+    margin-right: 20px;
+  }
+  .rating .star {
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    
+  }
+  
+  .rating .star.active {
+    color: #fdd835; /* Cor amarela das estrelas preenchidas */
+  }
+  
+  .comments-section {
+    width: 90%;
+    margin: 20px auto; /* Ajustando a margem */
+    padding: 0; /* Removendo o padding */
+    border: 1px solid #ddd; /* Borda mais suave */
+    border-radius: 8px; /* Borda arredondada */
+    background-color: #fff; /* Cor de fundo branca */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  }
+  
+  .comment {
+    padding: 20px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform-origin: top;
+    max-width: calc(100% - 40px); /* Define a largura mÃ¡xima do comentÃ¡rio */
+    word-wrap: break-word; /* Permite que as palavras longas sejam quebradas em linhas */
+  }
+  
+  .comment:last-child {
+    margin-bottom: 0; /* Remove a margem inferior do Ãºltimo comentÃ¡rio */
+  }
+  
+  .comment.visible {
+    transform: translateY(0); /* Altera a transformaÃ§Ã£o para um deslizamento suave */
+    opacity: 1;
+  }
+  
+  .comment p {
+    margin-bottom: 5px;
+    line-height: 1.0; /* EspaÃ§amento entre linhas */
+    font-size:18px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .comment .user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+  
+  .user-name {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .comment-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  .comment-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 5px;
+    transition: color 0.3s ease;
+  }
+  
+  .comment-actions button:hover {
+    color: #555;
+  }
+  .rating-text {
+    color: #093e99;
+    font-size: 17px;
+    font-weight: bold;
+    justify-content:left;
+    margin-left: 10px;
+  }
+</style>
+
+<body class="custom-cursor">
+
+    <div class="custom-cursor__cursor"></div>
+    <div class="custom-cursor__cursor-two"></div>
+
+    <div class="preloader">
+        <div class="preloader__image"></div>
+    </div>
+    <!-- /.preloader -->
+
+    <div class="page-wrapper">
+
+      
+      <header class="main-header-two">
+        <div class="main-menu-two__top">
+            <div class="container-fluid">
+                <div class="main-menu-two__top-innerResponsivo">
+
+                  <div class="main-menu-two__top-inner">
+                    <div class="main-menu-two__logo">
+                        <a href="index.html"><img src="assets/images/resources/logo-liferay.png" alt=""></a>
+                    </div>
+                    <div class="d-flex menuBlock">
+                      <div class="main-menu-two__top-right">
+                        <div class="main-menu-two__btn-box">
+                            <a href="index-login.html" class=" main-menu-two__btn-new">Home</a>
+                        </div>
+                    </div>
+                        <div class="main-menu-two__top-right">
+                          <div class="main-menu-two__btn-box">
+                              <a href="criarMeetUp.html" class=" main-menu-two__btn-new" style="margin-left: 50px;">Criar MeetUp</a>
+                          </div>
+                      </div>
+                      <div class="main-menu-two__top-right" style="margin-left: 50px;">
+                        <div class="main-menu-two__btn-box">
+                            <a href="favoritos.html" class="main-menu-two__btn-new">Favoritos</a>
+                        </div>
+                    </div>
+                    <div class="main-menu-two__top-right" style="margin-left: 50px; margin-right: 20px;">
+                      <div class="main-menu-two__btn-box">
+                          <a href="index.html" class="main-menu-two__btn-new" >Sair</a>
+                      </div>
+                  </div>
+                    </div>
+                  </div>
+
+                    <nav class="main-menu">
+                      <div class="main-menu__wrapper" style="display: none;">
+                          <div class="main-menu__wrapper-inner">
+                              <div class="main-menu__left">
+                                  <div class="main-menu__main-menu-box">
+                                      <a href="#" class="mobile-nav__toggler"><i class="fa fa-bars"></i></a>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                     </nav>
+
+                </div>
+        </div>
+
+        </div>
+    </header>
+
+
+        <div class="stricky-header stricked-menu main-menu main-menu-two">
+            <div class="sticky-header__content"></div><!-- /.sticky-header__content -->
+        </div><!-- /.stricky-header -->
+
+
+
+
+
+
+
+        <div class="container containers">
+          <div class="header">
+              <img src="assets/images/backgrounds/img1.jpg" alt="Imagem do Meetup">
+              <div class="description">
+                  <p id="description">Aprenda como potencializar seu desenvolvimento frontend com uma meetup por Roselaine Marques.</p>
+              </div>
+          </div>
+          <div class="info">
+              <h2>LIFERAY CLI: acelere seu desenvolvimento frontend com novo toolkit</h2>
+              <p><strong>Data:</strong> <span id="date">13/09/2024</span></p>
+              <p><strong>Horário:</strong> <span id="time">18:00</span></p>
+          </div>
+          <div class="link-buttons">
+              <p><strong>Link:</strong> <a href="#" id="link">www.meetup.com</a></p>
+              <div class="buttons buttonsAssistirMeetUp">
+                  <button id="favoriteButton">Favoritar</button>
+                  <button id="shareButton">Compartilhar</button>
+              </div>
+          </div>
+      </div>
+
+
+        <div class=" container comment-interface">
+          <div class="grid">
+            <div class="cell header">Comentários</div>
+          </div>
+          <div style="margin-top: 10px;">
+            <textarea id="comment" placeholder="Digite seu comentário aqui" class="comment-textarea"></textarea>
+          </div>
+          <div class="comment-rating justify-content-between">
+              <div>
+                <span class="rating-text">Avalie a Meetup:</span>
+              </div>
+              <div class="rating">
+                <span class="star" data-value="1">&#9733;</span>
+                <span class="star" data-value="2">&#9733;</span>
+                <span class="star" data-value="3">&#9733;</span>
+                <span class="star" data-value="4">&#9733;</span>
+                <span class="star" data-value="5">&#9733;</span>
+              </div>
+            </div>
+
+          <button id="submit-comment">Enviar</button>
+        </div>
+      
+        <div class="container comments-section" id="comments">
+          <div class="grid">
+           
+          </div>
+        </div>
+
+      
+
+
+
+
+
+
+
+
+
+         <!--Site Footer Start-->
+         <footer class="main-footer mb-4 mt-5 py-1 ">
+
+          <div class="container">
+            <div class="row logoFooterContainer justify-content-between">
+              <div class="col-md-6 main-menu-two__logo">
+                  <img src="assets/images/resources/logo-liferay.png"  alt="Logo">
+              </div>
+              <div class="col-md-6">
+                <div class="row justify-content-end">
+                  <div class="col-md-3">
+                    <div class="text-right">
+                      <ul class="list-unstyled social-networks">
+                        <li data-gtm-event="social-network-footer">
+                          <a href="https://web.facebook.com/liferay/" target="_blank" rel="noopener">
+                            <img alt="Facebook" class="icon-facebook" style="margin-top: -1.5px;" src="assets/images/resources/facebook.svg" >
+                          </a>
+                        </li>
+                        <li data-gtm-event="social-network-footer">
+                          <a href="https://www.instagram.com/liferaylatam/" target="_blank" rel="noopener">
+                            <img alt="Instagram" class="icon-instagram" src="assets/images/resources/instagram.svg" >
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        
+            <div class="row ">
+              <div class="col-md-4">
+                <h1 class="text-uppercase mb-3 mt-2"><a href="https://www.liferay.com/pt/platform" target="_blank" class="text-decoration-none text-uppercase mb-3 mt-2" style="color: inherit;">Liferay DXP</a></h1>
+                <ul class="list-unstyled nossosProdutos">
+                  <li><a href="https://www.liferay.com/pt/capabilities">Funcionalidades</a></li>
+                  <li><a href="https://www.liferay.com/pt/resources">Biblioteca de conteúdos</a></li>
+                  <li><a href="https://www.liferay.com/pt/solutions">Soluções</a></li>
+                  <li class="li-perguntas"><a href="https://www.liferay.com/pt/industries" >Setores</a></li>
+                  <li class="li-perguntas"><a href="https://www.liferay.com/pt/request-a-demo" >Solicite uma demonstração</a></li>
+                </ul>
+              </div>
+        
+              <div class="col-md-4">
+                <h1 class="text-uppercase mb-3 mt-2"><a href="https://www.liferay.com/pt/company/our-story" target="_blank" class="text-decoration-none text-uppercase mb-3 mt-2" style="color: inherit;">Sobre a Liferay</a></h1>
+
+                <ul class="list-unstyled">
+        
+                  <li class="li-perguntas"><a href="https://www.liferay.com/pt/contact-us" >Entre em contato</a></li>
+                  <li class="li-perguntas"><a href="https://www.liferay.com/pt/careers" >Carreiras</a></li>
+                  <li class="li-perguntas"><a href="https://www.liferay.com/pt/locations" >Escritórios/Localização</a></li>
+                  <li class="li-perguntas"><a href="https://www.liferay.com/pt/company/our-story" >Nossa história</a></li>
+        
+                </ul>
+              </div>
+
+              <div class="col-md-4">
+                <h1 class="text-uppercase mb-3 mt-2"><a href="https://liferay.dev/" target="_blank" class="text-decoration-none text-uppercase mb-3 mt-2" style="color: inherit;">Explore mais</a></h1>
+                  <ul class="list-unstyled">
+          
+                    <li class="li-perguntas"><a href="https://www.liferay.com/pt/platform" >Liferay DXP</a></li>   
+                    <li class="li-perguntas"><a href="https://liferay.dev/" >Comunidade</a></li>
+                    <li class="li-perguntas"><a href="#" >MeetUps Recomendadas</a></li>
+          
+                  </ul>
+                </div>
+
+            </div>
+          </div>
+        
+          <div class="container copy">
+            <div class="row">
+              <div class="col-md-6">
+                <p >&copy; 2024 Squad21. Todos os direitos reservados.</p>
+              </div>
+              <div class="col-md-6">
+                <address >
+                  Rua Alfândega, Nº 35, Sala 0401 - Paço Alfândega
+                  Recife, PE, 50.030-030
+                  Tel: +55 81 2121-6000
+                </address>
+              </div>
+            </div>
+          </div>
+      </footer>
+      <!--Site Footer End-->
+
+    </div><!-- /.page-wrapper -->
+
+    <div class="mobile-nav__wrapper">
+      <div class="mobile-nav__overlay mobile-nav__toggler"></div>
+      <!-- /.mobile-nav__overlay -->
+      <div class="mobile-nav__content">
+          <span class="mobile-nav__close mobile-nav__toggler"><i class="fa fa-times"></i></span>
+
+          <div class="logo-box">
+              <a href="index.html" aria-label="logo image"><img src="assets/images/resources/logo-liferay.png" width="150"
+                      alt="" /></a>
+          </div>
+          <!-- /.logo-box -->
+          <div class="mobile-nav__container">
+            <ul class="main-menu__list">
+          
+                <li class="dropdown">
+                    <a href="#">Menu</a>
+                    <ul>
+                        <li><a href="about.html">Home</a></li>
+                        <li><a href="criarMeetUp.html">Criar MeetUp</a></li>
+                        <li><a href="favoritos.html">Favoritos</a></li> 
+                    </ul>
+                </li>
+
+                <li>
+                  <a href="index.html">Sair</a>
+                </li>
+             </ul>
+           </div>
+          <!-- /.mobile-nav__container -->
+
+          <ul class="mobile-nav__contact list-unstyled">
+              <li>
+                  <i class="fa fa-envelope"></i>
+                  <a href="mailto:liferay@gmail.com">liferay@gmail.com</a>
+              </li>
+          </ul><!-- /.mobile-nav__contact -->
+          <div class="mobile-nav__top">
+              <div class="mobile-nav__social">
+                  <a href="#" class="fab fa-facebook-square"></a>
+                  <a href="#" class="fab fa-instagram"></a>
+              </div><!-- /.mobile-nav__social -->
+          </div><!-- /.mobile-nav__top -->
+
+      </div>
+      <!-- /.mobile-nav__content -->
+  </div>
+    <!-- /.mobile-nav__wrapper -->
+
+    <div class="search-popup">
+        <div class="search-popup__overlay search-toggler"></div>
+        <!-- /.search-popup__overlay -->
+        <div class="search-popup__content">
+            <form action="#">
+                <label for="search" class="sr-only">search here</label><!-- /.sr-only -->
+                <input type="text" id="search" placeholder="Search Here..." />
+                <button type="submit" aria-label="search submit" class="thm-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </form>
+        </div>
+        <!-- /.search-popup__content -->
+    </div>
+    <!-- /.search-popup -->
+
+    <a href="#" data-target="html" class="scroll-to-target scroll-to-top"><svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" style="margin-top:8px;" fill="#fff" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5"/>
+    </svg></a>
+
+    <script src="assets/vendors/jquery/jquery-3.6.0.min.js"></script>
+    <script src="assets/vendors/gsap/ScrollTrigger.js"></script>
+    <script src="assets/vendors/gsap/SplitText.js"></script>
+    <script src="assets/js/bondor.js"></script>
+</body>
+
+</html>
